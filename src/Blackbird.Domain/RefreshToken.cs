@@ -2,15 +2,15 @@
 namespace Blackbird.Domain {
     public class RefreshToken : EntityBase {
         #region private declarations
-        private int jwtRefreshTokenId;
+        private int refreshTokenId;
         private long userId;
         private string refreshTokenKey;
         private DateTime refreshTokenExpirationTime;
         #endregion
-        public Int32 JwtRefreshTokenId {
-            get => jwtRefreshTokenId;
+        public Int32 RefreshTokenId {
+            get => refreshTokenId;
             set {
-                jwtRefreshTokenId = value;
+                refreshTokenId = value;
                 EntityModified();
             }
         }
