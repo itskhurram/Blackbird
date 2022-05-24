@@ -11,7 +11,6 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             _configuration = configuration;
             ConnectionString = _configuration["ConnectionStrings:BirdConnectionString"];
         }
-
         public string GetConnectionString() {
             return ConnectionString;
         }
