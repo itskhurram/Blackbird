@@ -27,7 +27,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             Category category = new() {
                 CategoryId = (reader[CATEGORYID] != DBNull.Value) ? Conversion.ToInt(reader[CATEGORYID]) : 0,
                 CategoryName = (reader[CATEGORYNAME] != DBNull.Value) ? Conversion.ToString(reader[CATEGORYNAME]) : string.Empty,
-                IsActive = (reader[ISACTIVE] != DBNull.Value) ? Conversion.ToBool(reader[ISACTIVE]) : false,
+                IsActive = (reader[ISACTIVE] != DBNull.Value) && Conversion.ToBool(reader[ISACTIVE]),
             };
             return category;
         }
@@ -44,7 +44,5 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             return categoryList;
         }
         #endregion Functions
-
-
     }
 }

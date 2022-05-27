@@ -1,7 +1,7 @@
 ﻿using Blackbird.Domain.Base;
 
 namespace Blackbird.Domain {
-    internal class AccountType : EntityBase {
+    public class AccountType : EntityBase {
         #region private declarations
         private long accountTypeId;
         private string? accountTypeName;
