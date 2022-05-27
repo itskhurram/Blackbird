@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Blackbird.Application\Blackbird.Application.csproj" />
     <ProjectReference Include="..\Blackbird.Infrastructure.ExceptionHandling\Blackbird.Infrastructure.ExceptionHandling.csproj" />
     <ProjectReference Include="..\Blackbird.Infrastructure.IOC\Blackbird.Infrastructure.IOC.csproj" />
   </ItemGroup>

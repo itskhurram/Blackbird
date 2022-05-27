@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Blackbird.Application.Interfaces;
+using Blackbird.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blackbird.API.Controllers {
     public class AccountTypeController : BaseController {
-        //private readonly ILeadService _leadService;
-        //public LeadController(ILeadService leadService) {
-        //    _leadService = leadService;
-        //}
-        //[HttpGet]
-        //public async Task<IEnumerable<Lead>> Get() {
-        //    return await _leadService.GetAllLeads(true);
-        //}
+        private readonly IAccountTypeService _accountTypeService;
+        public AccountTypeController(IAccountTypeService accountTypeService) {
+            _accountTypeService = accountTypeService;
+        }
+        [HttpGet]
+        public async Task<IEnumerable<AccountType>> Get() {
+            return await _accountTypeService.GetAllAccountTypes(true);
+        }
     }
 }

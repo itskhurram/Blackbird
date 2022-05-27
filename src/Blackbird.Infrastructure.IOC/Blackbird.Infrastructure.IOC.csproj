@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Blackbird.Application\Blackbird.Application.csproj" />
     <ProjectReference Include="..\Blackbird.Domain\Blackbird.Domain.csproj" />
     <ProjectReference Include="..\Blackbird.Infrastructure.Logging\Blackbird.Infrastructure.Logging.csproj" />
+    <ProjectReference Include="..\Blackbird.Infrastructure.Persistance\Blackbird.Infrastructure.Persistance.csproj" />
   </ItemGroup>
 
 </Project>
