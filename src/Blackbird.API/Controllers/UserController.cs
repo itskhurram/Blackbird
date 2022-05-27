@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Blackbird.API.Controllers {
+﻿namespace Blackbird.API.Controllers {
     public class UserController : BaseController {
     }
 }

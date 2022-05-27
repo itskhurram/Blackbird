@@ -15,14 +15,14 @@ namespace Blackbird.Infrastructure.IOC.Container {
         }
         private static void ServicesRegistration(IServiceCollection services) {
             services.AddTransient<IAccountTypeService, AccountTypeService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             //services.AddTransient<IUserService, UserService>();
-            //services.AddTransient<ILeadService, LeadService>();
             //services.AddTransient<IJWTRefreshTokenService, JWTRefreshTokenService>();
         }
         private static void RepositoryRegistration(IServiceCollection services) {
             services.AddTransient<IBaseRepository, BaseRepository>();
             services.AddTransient<IAccountTypeRepository, AccountTypeRepository>();
-            //services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             //services.AddTransient<ILeadRepository, LeadRepository>();
             //services.AddTransient<IJWTRefreshTokenRepository, JWTRefreshTokenRepository>();
             //services.AddScoped<IMemoryCacheProvider, MemoryCacheProvider>();
