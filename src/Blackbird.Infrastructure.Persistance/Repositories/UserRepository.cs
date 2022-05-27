@@ -13,7 +13,8 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             _baseRepository = baseRepository;
         }
         #region SQL Procedures
-        protected const string PROC_USER_LOGIN = "user.Proc_User_Login";
+        protected const string GETALLUSERS = "\"user\".getallusers(@isactive)";
+        protected const string PROC_USER_LOGIN = "user.getallusers(@isactive)";
         #endregion SQL Procedures
 
         #region Parameters
@@ -46,6 +47,18 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             };
             return userAccount;
         }
+        public async Task<IList<User>> GetAllUsers(bool? isActive = null) {
+            IList<User> userList = new List<User>();
+            using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
+            using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, GETALLUSERS)) {
+                sqlCommand.Parameters.AddWithValue(ISACTIVE, NpgsqlDbType.Boolean, isActive == null ? DBNull.Value : isActive);
+                using var reader = await sqlCommand.ExecuteReaderAsync();
+                while (await reader.ReadAsync()) {
+                    userList.Add(Mapper(reader));
+                }
+            }
+            return userList;
+        }
         public async Task<User> Login(string loginName, string loginPassword) {
             try {
                 User userAccount = new();
@@ -60,6 +73,16 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
                 return userAccount;
             }
             finally { }
+        }
+
+       
+
+        public Task<User> GetById(long userId) {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> Signup(User user) {
+            throw new NotImplementedException();
         }
         #endregion Functions
 
