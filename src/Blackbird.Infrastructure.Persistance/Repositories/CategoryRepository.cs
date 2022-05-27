@@ -31,11 +31,11 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             };
             return category;
         }
-        public async Task<IList<Category>> GetAllCategories(bool? IsActive = null) {
+        public async Task<IList<Category>> GetAllCategories(bool? isActive = null) {
             IList<Category> categoryList = new List<Category>();
             using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
             using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, GETCATEGORIES)) {
-                sqlCommand.Parameters.AddWithValue(ISACTIVE, NpgsqlDbType.Boolean, IsActive == null ? DBNull.Value : IsActive);
+                sqlCommand.Parameters.AddWithValue(ISACTIVE, NpgsqlDbType.Boolean, isActive == null ? DBNull.Value : isActive);
                 using var reader = await sqlCommand.ExecuteReaderAsync();
                 while (await reader.ReadAsync()) {
                     categoryList.Add(Mapper(reader));

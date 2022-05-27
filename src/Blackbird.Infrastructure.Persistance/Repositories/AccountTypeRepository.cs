@@ -31,11 +31,11 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             };
             return accountType;
         }
-        public async Task<IList<AccountType>> GetAllAccountTypes(bool? IsActive = null) {
+        public async Task<IList<AccountType>> GetAllAccountTypes(bool? isActive = null) {
             IList<AccountType> accountTypeList = new List<AccountType>();
             using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
             using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, GETACCOUNTTYPES)) {
-                sqlCommand.Parameters.AddWithValue(ISACTIVE, NpgsqlDbType.Boolean, IsActive == null ? DBNull.Value : IsActive);
+                sqlCommand.Parameters.AddWithValue(ISACTIVE, NpgsqlDbType.Boolean, isActive == null ? DBNull.Value : isActive);
                 using var reader = await sqlCommand.ExecuteReaderAsync();
                 while (await reader.ReadAsync()) {
                     accountTypeList.Add(Mapper(reader));
