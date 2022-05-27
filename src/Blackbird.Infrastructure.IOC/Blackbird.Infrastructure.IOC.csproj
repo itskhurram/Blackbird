@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Blackbird.Application\Blackbird.Application.csproj" />
     <ProjectReference Include="..\Blackbird.Domain\Blackbird.Domain.csproj" />
+    <ProjectReference Include="..\Blackbird.Infrastructure.Caching\Blackbird.Infrastructure.Caching.csproj" />
     <ProjectReference Include="..\Blackbird.Infrastructure.Logging\Blackbird.Infrastructure.Logging.csproj" />
     <ProjectReference Include="..\Blackbird.Infrastructure.Persistance\Blackbird.Infrastructure.Persistance.csproj" />
   </ItemGroup>
