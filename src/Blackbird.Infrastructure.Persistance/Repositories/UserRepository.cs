@@ -13,8 +13,9 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             _baseRepository = baseRepository;
         }
         #region SQL Procedures
-        protected const string GETALLUSERS = "\"user\".getallusers(@isactive)";
-        protected const string PROC_USER_LOGIN = "user.getallusers(@isactive)";
+        protected const string GETALLUSERS = @"""user"".getallusers(@isactive)";
+        protected const string GETUSERBYID = @"""user"".getuserbyid(@userid)";
+        protected const string PROC_USER_LOGIN = @"""user"".getuserbyid(@userid)";
         #endregion SQL Procedures
 
         #region Parameters
@@ -58,6 +59,21 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
                 }
             }
             return userList;
+        }
+        public async Task<User> GetById(string loginName, string loginPassword) {
+            try {
+                User userAccount = new();
+                using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
+                using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, PROC_USER_LOGIN, false)) {
+                    sqlCommand.Parameters.AddWithValue(LOGINNAME, NpgsqlDbType.Varchar, loginName);
+                    sqlCommand.Parameters.AddWithValue(LOGINPASSWORD, NpgsqlDbType.Varchar, loginPassword);
+                    using var reader = await sqlCommand.ExecuteReaderAsync();
+                    if (await reader.ReadAsync())
+                        userAccount = Mapper(reader);
+                }
+                return userAccount;
+            }
+            finally { }
         }
         public async Task<User> Login(string loginName, string loginPassword) {
             try {
