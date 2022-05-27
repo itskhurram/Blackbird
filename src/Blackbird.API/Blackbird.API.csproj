@@ -8,7 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0-preview.4.22251.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL" Version="2.3.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL.Configuration" Version="1.0.1" />
+    <PackageReference Include="SerilogTimings" Version="2.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blackbird.Infrastructure.ExceptionHandling\Blackbird.Infrastructure.ExceptionHandling.csproj" />
+    <ProjectReference Include="..\Blackbird.Infrastructure.IOC\Blackbird.Infrastructure.IOC.csproj" />
   </ItemGroup>
 
 </Project>
