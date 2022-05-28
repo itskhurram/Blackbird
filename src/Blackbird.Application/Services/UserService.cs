@@ -12,8 +12,8 @@ namespace Blackbird.Application.Services {
             return await _userRepository.GetAllUsers(isActive);
         }
 
-        public Task<User> GetById(long userId) {
-            throw new NotImplementedException();
+        public async Task<User> GetById(long userId) {
+            return await _userRepository.GetById(userId);
         }
 
         public Task<User> Login(string loginName, string loginPassword) {

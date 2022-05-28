@@ -60,13 +60,12 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             }
             return userList;
         }
-        public async Task<User> GetById(string loginName, string loginPassword) {
+        public async Task<User> GetById(long userId) {
             try {
                 User userAccount = new();
                 using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
-                using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, PROC_USER_LOGIN, false)) {
-                    sqlCommand.Parameters.AddWithValue(LOGINNAME, NpgsqlDbType.Varchar, loginName);
-                    sqlCommand.Parameters.AddWithValue(LOGINPASSWORD, NpgsqlDbType.Varchar, loginPassword);
+                using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, GETUSERBYID)) {
+                    sqlCommand.Parameters.AddWithValue(USERID, NpgsqlDbType.Bigint, userId);
                     using var reader = await sqlCommand.ExecuteReaderAsync();
                     if (await reader.ReadAsync())
                         userAccount = Mapper(reader);
@@ -89,12 +88,6 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
                 return userAccount;
             }
             finally { }
-        }
-
-       
-
-        public Task<User> GetById(long userId) {
-            throw new NotImplementedException();
         }
 
         public Task<User> Signup(User user) {

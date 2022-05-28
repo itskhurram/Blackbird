@@ -8,9 +8,13 @@ namespace Blackbird.API.Controllers {
         public UserController(IUserService userService) {
             _userService = userService;
         }
-        [HttpGet]
+        [HttpGet("getAll")]
         public async Task<IEnumerable<User>> Get() {
             return await _userService.GetAllUsers(true);
+        }
+        [HttpGet("getById")]
+        public async Task<User> GetById(long userId) {
+            return await _userService.GetById(userId);
         }
     }
 }
