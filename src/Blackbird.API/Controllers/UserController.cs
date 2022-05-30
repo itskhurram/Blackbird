@@ -16,5 +16,9 @@ namespace Blackbird.API.Controllers {
         public async Task<User> GetById(long userId) {
             return await _userService.GetById(userId);
         }
+        [HttpPost("signup")]
+        public async Task<long> Signup(User user) {
+            return await _userService.Signup(user);
+        }
     }
 }

@@ -20,8 +20,8 @@ namespace Blackbird.Application.Services {
             throw new NotImplementedException();
         }
 
-        public Task<User> Signup(User user) {
-            throw new NotImplementedException();
+        public async Task<long> Signup(User user) {
+            return await _userRepository.Signup(user);
         }
     }
 }

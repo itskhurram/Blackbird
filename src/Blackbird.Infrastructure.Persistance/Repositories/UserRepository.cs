@@ -15,6 +15,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
         #region SQL Procedures
         protected const string GETALLUSERS = @"""user"".getallusers(@isactive)";
         protected const string GETUSERBYID = @"""user"".getuserbyid(@userid)";
+        protected const string INSERTUSER = @"""user"".insertuser(@firstname,@lastname,@loginame,@loginpassword,@rating,@accounttypeid,@createdby,@isactive)";
         protected const string PROC_USER_LOGIN = @"""user"".getuserbyid(@userid)";
         #endregion SQL Procedures
 
@@ -24,6 +25,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
         protected const string FIRSTNAME = "FirstName";
         protected const string LASTNAME = "LastName";
         protected const string LOGINPASSWORD = "LoginPassword";
+        protected const string ACCOUNTTYPEID = "accounttypeid";
         protected const string RATING = "rating";
         protected const string ISACTIVE = "IsActive";
         protected const string CREATEDBY = "CreatedBy";
@@ -74,6 +76,19 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             }
             finally { }
         }
+        public async Task<long> Signup(User user) {
+            using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
+            using NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, INSERTUSER);
+            sqlCommand.Parameters.AddWithValue(FIRSTNAME, NpgsqlDbType.Varchar, user.FirstName);
+            sqlCommand.Parameters.AddWithValue(LASTNAME, NpgsqlDbType.Varchar, user.LastName);
+            sqlCommand.Parameters.AddWithValue(LOGINNAME, NpgsqlDbType.Varchar, user.LoginName);
+            sqlCommand.Parameters.AddWithValue(LOGINPASSWORD, NpgsqlDbType.Varchar, user.LoginPassword);
+            sqlCommand.Parameters.AddWithValue(RATING, NpgsqlDbType.Real, user.Rating);
+            sqlCommand.Parameters.AddWithValue(ACCOUNTTYPEID, NpgsqlDbType.Smallint, user.AccountTypeId);
+            sqlCommand.Parameters.AddWithValue(CREATEDBY, NpgsqlDbType.Integer, user.CreatedBy);
+            sqlCommand.Parameters.AddWithValue(ISACTIVE, NpgsqlDbType.Boolean, user.IsActive);
+            return Conversion.ToLong(await sqlCommand.ExecuteScalarAsync());
+        }
         public async Task<User> Login(string loginName, string loginPassword) {
             try {
                 User userAccount = new();
@@ -90,9 +105,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             finally { }
         }
 
-        public Task<User> Signup(User user) {
-            throw new NotImplementedException();
-        }
+        
         #endregion Functions
 
     }

@@ -9,6 +9,7 @@ namespace Blackbird.Domain {
         private string? firstName;
         private string? lastName;
         private decimal rating;
+        private short accounttypeid;
         #endregion
 
         public long UserId {
@@ -43,6 +44,12 @@ namespace Blackbird.Domain {
         public decimal Rating {
             get => rating; set {
                 rating = value;
+                EntityModified();
+            }
+        }
+        public short AccountTypeId {
+            get => accounttypeid; set {
+                accounttypeid = value;
                 EntityModified();
             }
         }
