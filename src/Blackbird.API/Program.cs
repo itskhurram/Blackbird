@@ -1,5 +1,6 @@
 using Blackbird.Infrastructure.ExceptionHandling;
 using Blackbird.Infrastructure.IOC.Container;
+using Blackbird.Infrastructure.IOC.Extension;
 using Serilog;
 using Serilog.Events;
 
@@ -16,12 +17,14 @@ try {
         .ReadFrom.Services(services)
         .Enrich.FromLogContext());
 
+    builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy => policy.WithOrigins(builder.Configuration["OriginConfiguration:AllowOrigins"]).AllowAnyHeader().AllowAnyMethod()));
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.AddMemoryCache();
     builder.Services.AddSingleton(builder.Configuration);
     DependencyContainer.RegisterServices(builder.Services);
+    Authentication.AddAuthenication(builder.Services, builder.Configuration);
 
     var app = builder.Build();
 
