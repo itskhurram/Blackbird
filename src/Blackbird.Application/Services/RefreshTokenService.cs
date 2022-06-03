@@ -1,13 +1,8 @@
-﻿using Blackbird.Domain.Entities;
-using Blackbird.Domain.Interfaces;
-using Blackbird.Domain.Interfaces.Base;
+﻿using Blackbird.Application.Interfaces;
+using Blackbird.Domain.Entities;
 
-namespace Blackbird.Infrastructure.Persistance.Repositories {
-    public class RefreshTokenRepository : IRefreshTokenRepository {
-        private readonly IBaseRepository _baseRepository;
-        public RefreshTokenRepository(IBaseRepository baseRepository) {
-            _baseRepository = baseRepository;
-        }
+namespace Blackbird.Application.Services {
+    public class RefreshTokenService : IRefreshTokenService {
         public Task<bool> CheckRefreshTokenIsValid(long userId, string refreshToken) {
             throw new NotImplementedException();
         }
