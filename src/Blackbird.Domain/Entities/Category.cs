@@ -1,5 +1,6 @@
 ﻿using Blackbird.Domain.Base;
-namespace Blackbird.Domain {
+
+namespace Blackbird.Domain.Entities {
     public class Category : EntityBase {
         #region private declarations
         private long categoryId;

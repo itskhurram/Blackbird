@@ -1,4 +1,6 @@
-﻿namespace Blackbird.Domain.Interfaces {
+﻿using Blackbird.Domain.Entities;
+
+namespace Blackbird.Domain.Interfaces {
     public interface IRefreshTokenRepository {
         Task<RefreshToken> GetRefreshTokenByUserId(long userId, string refreshTokenKey);
         Task<bool> Insert(RefreshToken jWTRefreshToken);

@@ -1,5 +1,5 @@
 ﻿using Blackbird.Application.Interfaces;
-using Blackbird.Domain;
+using Blackbird.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blackbird.API.Controllers {

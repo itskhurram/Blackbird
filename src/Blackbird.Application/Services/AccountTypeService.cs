@@ -1,5 +1,5 @@
 ﻿using Blackbird.Application.Interfaces;
-using Blackbird.Domain;
+using Blackbird.Domain.Entities;
 using Blackbird.Domain.Interfaces;
 using System;
 using System.Collections.Generic;

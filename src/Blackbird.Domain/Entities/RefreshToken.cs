@@ -1,5 +1,6 @@
 ﻿using Blackbird.Domain.Base;
-namespace Blackbird.Domain {
+
+namespace Blackbird.Domain.Entities {
     public class RefreshToken : EntityBase {
         #region private declarations
         private int refreshTokenId;
@@ -7,14 +8,14 @@ namespace Blackbird.Domain {
         private string refreshTokenKey;
         private DateTime refreshTokenExpirationTime;
         #endregion
-        public Int32 RefreshTokenId {
+        public int RefreshTokenId {
             get => refreshTokenId;
             set {
                 refreshTokenId = value;
                 EntityModified();
             }
         }
-        public Int64 UserId {
+        public long UserId {
             get => userId; set {
                 userId = value;
                 EntityModified();

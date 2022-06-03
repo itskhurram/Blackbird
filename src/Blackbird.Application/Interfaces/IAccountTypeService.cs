@@ -1,4 +1,4 @@
-﻿using Blackbird.Domain;
+﻿using Blackbird.Domain.Entities;
 
 namespace Blackbird.Application.Interfaces {
     public interface IAccountTypeService {

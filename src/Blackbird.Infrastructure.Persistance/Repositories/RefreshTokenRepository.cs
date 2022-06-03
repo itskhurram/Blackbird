@@ -1,4 +1,4 @@
-﻿using Blackbird.Domain;
+﻿using Blackbird.Domain.Entities;
 using Blackbird.Domain.Interfaces;
 
 namespace Blackbird.Infrastructure.Persistance.Repositories {

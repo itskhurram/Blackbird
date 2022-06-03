@@ -1,6 +1,6 @@
 ﻿using Blackbird.Domain.Base;
 
-namespace Blackbird.Domain {
+namespace Blackbird.Domain.Entities {
     public class User : EntityBase {
         #region private declarations
         private long userId;

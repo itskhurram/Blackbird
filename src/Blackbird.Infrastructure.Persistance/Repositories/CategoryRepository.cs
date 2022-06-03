@@ -1,4 +1,4 @@
-﻿using Blackbird.Domain;
+﻿using Blackbird.Domain.Entities;
 using Blackbird.Domain.Interfaces;
 using Blackbird.Domain.Interfaces.Base;
 using Blackbird.Infrastructure.Common;

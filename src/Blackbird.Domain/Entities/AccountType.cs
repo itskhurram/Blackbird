@@ -1,6 +1,6 @@
 ﻿using Blackbird.Domain.Base;
 
-namespace Blackbird.Domain {
+namespace Blackbird.Domain.Entities {
     public class AccountType : EntityBase {
         #region private declarations
         private long accountTypeId;
