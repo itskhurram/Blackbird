@@ -16,7 +16,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
         protected const string GETALLUSERS = @"""user"".getallusers(@isactive)";
         protected const string GETUSERBYID = @"""user"".getuserbyid(@userid)";
         protected const string INSERTUSER = @"""user"".insertuser(@firstname,@lastname,@loginname,@loginpassword,@rating,@accounttypeid,@createdby,@isactive)";
-        protected const string PROC_USER_LOGIN = @"""user"".getuserbyid(@userid)";
+        protected const string USERLOGIN = @"""user"".userlogin(@loginname,@loginpassword)";
         #endregion SQL Procedures
 
         #region Parameters
@@ -93,7 +93,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
             try {
                 User userAccount = new();
                 using NpgsqlConnection sqlConnection = _baseRepository.GetConnection();
-                using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, PROC_USER_LOGIN, false)) {
+                using (NpgsqlCommand sqlCommand = _baseRepository.GetSqlCommand(sqlConnection, USERLOGIN)) {
                     sqlCommand.Parameters.AddWithValue(LOGINNAME, NpgsqlDbType.Varchar, loginName);
                     sqlCommand.Parameters.AddWithValue(LOGINPASSWORD, NpgsqlDbType.Varchar, loginPassword);
                     using var reader = await sqlCommand.ExecuteReaderAsync();

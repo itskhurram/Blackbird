@@ -20,5 +20,9 @@ namespace Blackbird.API.Controllers {
         public async Task<long> Signup(User user) {
             return await _userService.Signup(user);
         }
+        [HttpPost("login")]
+        public async Task<User> Login(string loginName, string loginPassword) {
+            return await _userService.Login(loginName, loginPassword);
+        }
     }
 }
