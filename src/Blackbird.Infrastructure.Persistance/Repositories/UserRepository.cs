@@ -15,7 +15,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
         #region SQL Procedures
         protected const string GETALLUSERS = @"""user"".getallusers(@isactive)";
         protected const string GETUSERBYID = @"""user"".getuserbyid(@userid)";
-        protected const string INSERTUSER = @"""user"".insertuser(@firstname,@lastname,@loginame,@loginpassword,@rating,@accounttypeid,@createdby,@isactive)";
+        protected const string INSERTUSER = @"""user"".insertuser(@firstname,@lastname,@loginname,@loginpassword,@rating,@accounttypeid,@createdby,@isactive)";
         protected const string PROC_USER_LOGIN = @"""user"".getuserbyid(@userid)";
         #endregion SQL Procedures
 
@@ -41,7 +41,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
                 LoginName = (reader[LOGINNAME] != DBNull.Value) ? Conversion.ToString(reader[LOGINNAME]) : string.Empty,
                 FirstName = (reader[FIRSTNAME] != DBNull.Value) ? Conversion.ToString(reader[FIRSTNAME]) : string.Empty,
                 LastName = (reader[LASTNAME] != DBNull.Value) ? Conversion.ToString(reader[LASTNAME]) : string.Empty,
-                Rating = (reader[RATING] != DBNull.Value) ? Conversion.ToDecimal(reader[RATING]) : 0,
+                Rating = (reader[RATING] != DBNull.Value) ? Conversion.ToDouble(reader[RATING]) : 0,
                 IsActive = (reader[ISACTIVE] != DBNull.Value) ? Conversion.ToBool(reader[ISACTIVE]) : false,
                 CreatedBy = (reader[CREATEDBY] != DBNull.Value) ? Conversion.ToInt(reader[CREATEDBY]) : 0,
                 CreatedDate = (reader[CREATEDDATE] != DBNull.Value) ? Conversion.ToDateTime(reader[CREATEDDATE]) : DateTime.MinValue,

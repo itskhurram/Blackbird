@@ -8,7 +8,7 @@ namespace Blackbird.Domain {
         private string? loginPassword;
         private string? firstName;
         private string? lastName;
-        private decimal rating;
+        private double rating;
         private short accounttypeid;
         #endregion
 
@@ -41,7 +41,7 @@ namespace Blackbird.Domain {
                 EntityModified();
             }
         }
-        public decimal Rating {
+        public double Rating {
             get => rating; set {
                 rating = value;
                 EntityModified();
