@@ -52,19 +52,19 @@ namespace Blackbird.API.Controllers {
 
                     var jwtToken = GenerateToken(user.UserId, user.LoginName);
 
-                    _jwtRefreshTokenService.Insert(new RefreshToken() {
-                        RefreshTokenKey = jwtToken.RefreshToken,
-                        RefreshTokenExpirationTime = jwtToken.RefreshTokenExpirationTimeInMinutes,
-                        UserId = user.UserId,
-                        CreatedDate = DateTime.Now
-                    }).GetAwaiter().GetResult();
+                    //_jwtRefreshTokenService.Insert(new RefreshToken() {
+                    //    RefreshTokenKey = jwtToken.RefreshToken,
+                    //    RefreshTokenExpirationTime = jwtToken.RefreshTokenExpirationTimeInMinutes,
+                    //    UserId = user.UserId,
+                    //    CreatedDate = DateTime.Now
+                    //}).GetAwaiter().GetResult();
 
-                    _loginLogService.Insert(new LoginLog() {
-                        UserId = user.UserId,
-                        LoginTime = DateTime.Now,
-                        ServerName = Environment.MachineName,
-                        SessionToken = jwtToken.RefreshToken
-                    }).GetAwaiter().GetResult();
+                    //_loginLogService.Insert(new LoginLog() {
+                    //    UserId = user.UserId,
+                    //    LoginTime = DateTime.Now,
+                    //    ServerName = Environment.MachineName,
+                    //    SessionToken = jwtToken.RefreshToken
+                    //}).GetAwaiter().GetResult();
 
                     response.Data = user;
                     response.AdditionalData = jwtToken;

@@ -19,6 +19,7 @@ namespace Blackbird.Infrastructure.IOC.Container {
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRefreshTokenService, RefreshTokenService>();
+            services.AddTransient<ILoginLogService, LoginLogService>();
         }
         private static void RepositoryRegistration(IServiceCollection services) {
             services.AddTransient<IBaseRepository, BaseRepository>();
@@ -26,6 +27,7 @@ namespace Blackbird.Infrastructure.IOC.Container {
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddTransient<ILoginLogRepository, LoginLogRepository>();
             services.AddScoped<IMemoryCacheProvider, MemoryCacheProvider>();
         }
 
