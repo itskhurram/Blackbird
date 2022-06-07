@@ -18,14 +18,14 @@ namespace Blackbird.Infrastructure.IOC.Container {
             services.AddTransient<IAccountTypeService, AccountTypeService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUserService, UserService>();
-            //services.AddTransient<IJWTRefreshTokenService, JWTRefreshTokenService>();
+            services.AddTransient<IRefreshTokenService, RefreshTokenService>();
         }
         private static void RepositoryRegistration(IServiceCollection services) {
             services.AddTransient<IBaseRepository, BaseRepository>();
             services.AddTransient<IAccountTypeRepository, AccountTypeRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            //services.AddTransient<IJWTRefreshTokenRepository, JWTRefreshTokenRepository>();
+            services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
             services.AddScoped<IMemoryCacheProvider, MemoryCacheProvider>();
         }
 
