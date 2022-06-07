@@ -50,7 +50,7 @@ namespace Blackbird.API.Controllers {
                     //    return BadRequest(response);
                     //}
 
-                    var jwtToken = GenerateToken(user.UserId, user.LoginName);
+                    var jwtToken = _userService.GenerateToken(user.UserId, user.LoginName);
 
                     //_jwtRefreshTokenService.Insert(new RefreshToken() {
                     //    RefreshTokenKey = jwtToken.RefreshToken,
@@ -120,7 +120,7 @@ namespace Blackbird.API.Controllers {
 
                     //Validation to check Refresh token is expire or not.
                     if (refreshToken != null && DateTime.Now <= refreshToken.RefreshTokenExpirationTime) {
-                        var token = GenerateToken(Conversion.ToInt64(userId), userName);
+                        var token = _userService.GenerateToken(Conversion.ToInt64(userId), userName);
 
                         refreshToken.UpdatedDate = DateTime.Now;
                         refreshToken.RefreshTokenKey = token.RefreshToken;
@@ -161,42 +161,5 @@ namespace Blackbird.API.Controllers {
                 return BadRequest(responseViewModel);
             }
         }
-
-        #region Private Methods
-        private JWToken GenerateToken(Int64 userId, string userName) {
-            var dateTimeNow = DateTime.Now;
-            var tokenExpireTime = dateTimeNow.AddMinutes(Convert.ToDouble(_configuration["TokenAuthentication:JWTTokenExpirationTimeInMinutes"]));
-            var refreshTokenExpirationTime = dateTimeNow.AddMinutes(Convert.ToDouble(_configuration["TokenAuthentication:JWTRefreshTokenExpirationTimeInMinutes"]));
-
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Sid, userId.ToString()),
-                new Claim(ClaimTypes.Name, userName),
-             };
-
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["TokenAuthentication:SecretKey"]));
-
-            var jwt = new JwtSecurityToken(
-                issuer: _configuration["TokenAuthentication:Issuer"],
-                audience: _configuration["TokenAuthentication:Audience"],
-                claims: claims,
-                notBefore: dateTimeNow,
-                expires: tokenExpireTime,
-                signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
-            );
-
-            return new JWToken() {
-                Token = new JwtSecurityTokenHandler().WriteToken(jwt),
-                RefreshToken = GenerateRefreshTokenKey(),
-                TokenExpirationTimeInMinutes = tokenExpireTime,
-                RefreshTokenExpirationTimeInMinutes = refreshTokenExpirationTime
-            };
-        }
-        private string GenerateRefreshTokenKey() {
-            var refreshKey = _configuration["TokenAuthentication:JWTRefreshTokenKey"];
-            return Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Concat(refreshKey, Guid.NewGuid().ToString())));
-        }
-
-        #endregion
     }
 }

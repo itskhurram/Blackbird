@@ -32,8 +32,6 @@ namespace Blackbird.Application.Services {
         public async Task<long> Signup(User user) {
             return await _userRepository.Signup(user);
         }
-
-        #region Private Methods
         public JWToken GenerateToken(Int64 userId, string userName) {
             var dateTimeNow = DateTime.Now;
             var tokenExpireTime = dateTimeNow.AddMinutes(Convert.ToDouble(_configuration["TokenAuthentication:JWTTokenExpirationTimeInMinutes"]));
@@ -63,11 +61,9 @@ namespace Blackbird.Application.Services {
                 RefreshTokenExpirationTimeInMinutes = refreshTokenExpirationTime
             };
         }
-        private string GenerateRefreshTokenKey() {
+        public string GenerateRefreshTokenKey() {
             var refreshKey = _configuration["TokenAuthentication:JWTRefreshTokenKey"];
             return Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Concat(refreshKey, Guid.NewGuid().ToString())));
         }
-
-        #endregion
     }
 }
