@@ -1,5 +1,6 @@
 ﻿using Blackbird.Application.Interfaces;
 using Blackbird.Domain.Entities;
+using Blackbird.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blackbird.API.Controllers {
@@ -17,12 +18,50 @@ namespace Blackbird.API.Controllers {
             return await _userService.GetById(userId);
         }
         [HttpPost("signup")]
-        public async Task<long> Signup(User user) {
-            return await _userService.Signup(user);
+        public async Task<ActionResult<ResponseViewModel>> Signup(User user) {
+            var response = new ResponseViewModel() { OperationStatus = false };
+            user.UserId =  await _userService.Signup(user);
+
+            if (user != null) {
+                //var assignedPermissions = await _dataPermissionService.GetDataPermissionByUserId(user.UserId);
+
+                //if (!assignedPermissions.Any()) {
+                //    response.Message = "User Has No Data Permission To Login";
+                //    return BadRequest(response);
+                //}
+
+                var jwtToken = _userService.GenerateToken(user.UserId, user.LoginName);
+
+                //_jwtRefreshTokenService.Insert(new RefreshToken() {
+                //    RefreshTokenKey = jwtToken.RefreshToken,
+                //    RefreshTokenExpirationTime = jwtToken.RefreshTokenExpirationTimeInMinutes,
+                //    UserId = user.UserId,
+                //    CreatedDate = DateTime.Now
+                //}).GetAwaiter().GetResult();
+
+                //_loginLogService.Insert(new LoginLog() {
+                //    UserId = user.UserId,
+                //    LoginTime = DateTime.Now,
+                //    ServerName = Environment.MachineName,
+                //    SessionToken = jwtToken.RefreshToken
+                //}).GetAwaiter().GetResult();
+
+                response.Data = user;
+                response.AdditionalData = jwtToken;
+                response.Message = "Login Successfully";
+                response.OperationStatus = true;
+
+                return Ok(response);
+            }
+            else {
+                response.Message = "Incorrect Username or Password";
+                return BadRequest(response);
+            }
+
         }
-        [HttpPost("login")]
-        public async Task<User> Login(string loginName, string loginPassword) {
-            return await _userService.Login(loginName, loginPassword);
-        }
+        //[HttpPost("login")]
+        //public async Task<User> Login(string loginName, string loginPassword) {
+        //    return await _userService.Login(loginName, loginPassword);
+        //}
     }
 }

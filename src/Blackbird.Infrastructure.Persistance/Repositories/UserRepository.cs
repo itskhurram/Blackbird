@@ -43,6 +43,7 @@ namespace Blackbird.Infrastructure.Persistance.Repositories {
                 LastName = (reader[LASTNAME] != DBNull.Value) ? Conversion.ToString(reader[LASTNAME]) : string.Empty,
                 Rating = (reader[RATING] != DBNull.Value) ? Conversion.ToDouble(reader[RATING]) : 0,
                 IsActive = (reader[ISACTIVE] != DBNull.Value) ? Conversion.ToBool(reader[ISACTIVE]) : false,
+                AccountTypeId = (reader[ACCOUNTTYPEID] != DBNull.Value) ? Conversion.ToShort(reader[ACCOUNTTYPEID]) : (short)0,
                 CreatedBy = (reader[CREATEDBY] != DBNull.Value) ? Conversion.ToInt(reader[CREATEDBY]) : 0,
                 CreatedDate = (reader[CREATEDDATE] != DBNull.Value) ? Conversion.ToDateTime(reader[CREATEDDATE]) : DateTime.MinValue,
                 UpdatedBy = (reader[UPDATEDBY] != DBNull.Value) ? Conversion.ToInt(reader[UPDATEDBY]) : 0,
