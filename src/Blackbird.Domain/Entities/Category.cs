@@ -4,6 +4,7 @@ namespace Blackbird.Domain.Entities {
     public class Category : EntityBase {
         #region private declarations
         private long categoryId;
+        private string? categoryLogoURL;
         private string? categoryName;
         private string? categoryDescription;
         private bool isParent;
@@ -13,6 +14,12 @@ namespace Blackbird.Domain.Entities {
             get => categoryId; set {
                 categoryId = value;
                 EntityModified();
+            }
+        }
+        public string CategoryLogoURL
+        {
+            get => categoryLogoURL; set {
+                categoryLogoURL = value; EntityModified();
             }
         }
         public string CategoryName {
