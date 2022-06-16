@@ -4,10 +4,13 @@ namespace Blackbird.Domain.Entities {
     public class User : EntityBase {
         #region private declarations
         private long userId;
-        private string? loginName;
+        private string? emailAddress;
+        private string? phoneNumber;
         private string? loginPassword;
         private string? firstName;
         private string? lastName;
+        private string? secondaryContactNumber;
+        private string? userProfilePictureURL;
         private double rating;
         private short accounttypeid;
         #endregion
@@ -18,9 +21,16 @@ namespace Blackbird.Domain.Entities {
                 EntityModified();
             }
         }
-        public string LoginName {
-            get => loginName; set {
-                loginName = value; EntityModified();
+        public string EmailAddress
+        {
+            get => emailAddress; set {
+                emailAddress = value; EntityModified();
+            }
+        }
+        public string PhoneNumber
+        {
+            get => phoneNumber; set {
+                phoneNumber = value; EntityModified();
             }
         }
         public string LoginPassword {
@@ -39,6 +49,20 @@ namespace Blackbird.Domain.Entities {
             get => lastName; set {
                 lastName = value;
                 EntityModified();
+            }
+        }
+        public string SecondaryContactNumber
+        {
+            get => secondaryContactNumber; set
+            {
+                secondaryContactNumber = value; EntityModified();
+            }
+        }
+        public string UserProfilePictureURL
+        {
+            get => userProfilePictureURL; set
+            {
+                userProfilePictureURL = value; EntityModified();
             }
         }
         public double Rating {
