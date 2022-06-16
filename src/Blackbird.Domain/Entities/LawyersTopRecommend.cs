@@ -12,6 +12,7 @@ namespace Blackbird.Domain.Entities
         #region private declarations
         private long lawyersTopRecommendId;
         private long userId;
+        private long categoryId; // if 0 then he is universally recommended, else in a particular category
         #endregion
 
         public long LawyersTopRecommendId
@@ -27,6 +28,13 @@ namespace Blackbird.Domain.Entities
             get => userId; set
             {
                 userId = value; EntityModified();
+            }
+        }
+        public long CategoryId
+        {
+            get => categoryId; set
+            {
+                categoryId = value; EntityModified();
             }
         }
     }
