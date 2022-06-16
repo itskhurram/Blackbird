@@ -4,6 +4,7 @@ namespace Blackbird.Domain.Entities {
     public class User : EntityBase {
         #region private declarations
         private long userId;
+        private string? cnic;
         private string? emailAddress;
         private string? phoneNumber;
         private string? loginPassword;
@@ -19,6 +20,12 @@ namespace Blackbird.Domain.Entities {
             get => userId; set {
                 userId = value;
                 EntityModified();
+            }
+        }
+        public string CNIC
+        {
+            get => cnic; set {
+                cnic = value; EntityModified();
             }
         }
         public string EmailAddress
