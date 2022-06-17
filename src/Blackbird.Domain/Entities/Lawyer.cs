@@ -1,11 +1,4 @@
-﻿using Blackbird.Domain.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blackbird.Domain.Entities
+﻿namespace Blackbird.Domain.Entities
 {
     public class Lawyer : User    
     {

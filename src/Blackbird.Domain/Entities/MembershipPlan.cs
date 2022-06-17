@@ -1,6 +1,5 @@
 ﻿using Blackbird.Domain.Base;
 
-
 namespace Blackbird.Domain.Entities
 {
     public class MembershipPlan : EntityBase

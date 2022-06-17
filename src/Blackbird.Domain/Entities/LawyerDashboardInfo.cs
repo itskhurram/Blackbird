@@ -2,7 +2,7 @@
 
 namespace Blackbird.Domain.Entities
 {
-    public class LawyersTopRecommend : EntityBase
+    public class LawyerDashboardInfo : EntityBase
     {
         #region private declarations
         private long lawyersTopRecommendId;
@@ -25,12 +25,6 @@ namespace Blackbird.Domain.Entities
                 userId = value; EntityModified();
             }
         }
-        public long CategoryId
-        {
-            get => categoryId; set
-            {
-                categoryId = value; EntityModified();
-            }
-        }
+
     }
 }
