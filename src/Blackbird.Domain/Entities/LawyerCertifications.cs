@@ -6,6 +6,7 @@ namespace Blackbird.Domain.Entities
     {
         #region private declarations
         private long lawyerCertificationId;
+        private string? certificationDocProofURL;
         private string? certificationTitle;
         private string? certificationCompletionYear;
         private string? certificationInstitute;
@@ -18,6 +19,13 @@ namespace Blackbird.Domain.Entities
             {
                 lawyerCertificationId = value;
                 EntityModified();
+            }
+        }
+        public string CertificationDocProofURL
+        {
+            get => certificationDocProofURL; set
+            {
+                certificationDocProofURL= value; EntityModified();
             }
         }
         public string CertificationTitle

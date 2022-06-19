@@ -34,11 +34,11 @@ namespace Blackbird.Domain.Entities
                 details = value; EntityModified();
             }
         }
-        public long ForLawyer_userId
+        public long ForUser_userId
         {
-            get => forLawyer_userId; set
+            get => forUser_userId; set
             {
-                forLawyer_userId = value; EntityModified();
+                forUser_userId = value; EntityModified();
             }
         }
         public long FromUser_userId
