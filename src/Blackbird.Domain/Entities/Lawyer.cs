@@ -4,7 +4,8 @@
     {
         #region private declarations
         private short practicingSince;
-        private string? education;
+        private string? tagLine;
+        private string? designation;
         private string? postalAddress;
         private string? state;
         private string? city;
@@ -18,11 +19,18 @@
                 practicingSince = value; EntityModified();
             }
         }
-        public string Education
+        public string TagLine
         {
-            get => education; set
+            get => tagLine; set
             {
-                education = value; EntityModified();
+                tagLine = value; EntityModified();
+            }
+        }
+        public string Designation
+        {
+            get => designation; set
+            {
+                designation= value; EntityModified();
             }
         }
         public string PostalAddress

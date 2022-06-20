@@ -7,7 +7,7 @@ namespace Blackbird.Domain.Entities {
         private string? categoryLogoURL;
         private string? categoryName;
         private string? categoryDescription;
-        private bool isParent;
+        private bool parentCategoryId;
         #endregion
 
         public long CategoryId {
@@ -34,10 +34,10 @@ namespace Blackbird.Domain.Entities {
             }
         }
         
-        public bool IsParent
+        public bool ParentCategoryId
         {
-            get => isParent; set {
-                isParent = value; EntityModified();
+            get => parentCategoryId; set {
+                parentCategoryId = value; EntityModified();
             }
         }
     }
