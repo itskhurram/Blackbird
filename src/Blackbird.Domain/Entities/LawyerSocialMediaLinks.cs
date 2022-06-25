@@ -16,6 +16,9 @@ namespace Blackbird.Domain.Entities
         private string? facebookLink;
         private string? instagramLink;
         private string? messengerLink;
+
+        private long userId;
+
         #endregion
 
 
@@ -24,6 +27,13 @@ namespace Blackbird.Domain.Entities
             get => lawyerSocialMediaLinksId; set
             {
                 lawyerSocialMediaLinksId = value; EntityModified();
+            }
+        }
+        public long UserId
+        {
+            get => userId; set
+            {
+                userId = value; EntityModified();
             }
         }
         public string WhatsappNumber
