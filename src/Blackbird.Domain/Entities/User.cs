@@ -4,16 +4,16 @@ namespace Blackbird.Domain.Entities {
     public class User : EntityBase {
         #region private declarations
         private long userId;
-        private string? cnic;
-        private string? loginName;
-        private string? emailAddress;
-        private string? phoneNumber;
-        private string? loginPassword;
-        private string? firstName;
-        private string? lastName;
-        private string? secondaryContactNumber;
-        private string? userProfilePictureURL;
-        private double rating;
+        private string? shortDescription;//
+        private string? designation;//
+        private string? cnic;//
+        private string? emailAddress;//
+        private string? phoneNumber;//
+        private string? loginPassword;/////
+        private string? firstName;//
+        private string? lastName;//
+        private string? secondaryContactNumber;//
+        private string? userProfilePictureURL;//
         private short accounttypeid;
         #endregion
 
@@ -21,6 +21,20 @@ namespace Blackbird.Domain.Entities {
             get => userId; set {
                 userId = value;
                 EntityModified();
+            }
+        }
+        public string ShortDescription
+        {
+            get => shortDescription; set
+            {
+                shortDescription = value; EntityModified();
+            }
+        }
+        public string Designation
+        {
+            get => designation; set
+            {
+                designation = value; EntityModified();
             }
         }
         public string CNIC
@@ -33,12 +47,6 @@ namespace Blackbird.Domain.Entities {
         {
             get => emailAddress; set {
                 emailAddress = value; EntityModified();
-            }
-        }
-        public string LoginName
-        {
-            get => loginName; set {
-                loginName = value; EntityModified();
             }
         }
         public string PhoneNumber
@@ -77,12 +85,6 @@ namespace Blackbird.Domain.Entities {
             get => userProfilePictureURL; set
             {
                 userProfilePictureURL = value; EntityModified();
-            }
-        }
-        public double Rating {
-            get => rating; set {
-                rating = value;
-                EntityModified();
             }
         }
         public short AccountTypeId {
