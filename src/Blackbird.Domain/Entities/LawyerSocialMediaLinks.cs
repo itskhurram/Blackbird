@@ -10,12 +10,12 @@ namespace Blackbird.Domain.Entities
     public class LawyerSocialMediaLinks: EntityBase
     {
         #region private declarations
-        private long lawyerSocialMediaLinksId;//
+        private long lawyerSocialMediaLinksId;
         
-        private string? whatsappNumber;//
-        private string? facebookLink;//
-        private string? instagramLink;//
-        private string? messengerLink;//
+        private string? whatsappNumber;
+        private string? facebookLink;
+        private string? instagramLink;
+        private string? messengerLink;
         #endregion
 
 

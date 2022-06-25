@@ -4,16 +4,16 @@ namespace Blackbird.Domain.Entities {
     public class User : EntityBase {
         #region private declarations
         private long userId;
-        private string? shortDescription;//
-        private string? designation;//
-        private string? cnic;//
-        private string? emailAddress;//
-        private string? phoneNumber;//
-        private string? loginPassword;/////
-        private string? firstName;//
-        private string? lastName;//
-        private string? secondaryContactNumber;//
-        private string? userProfilePictureURL;//
+        private string? shortDescription;
+        private string? designation;
+        private string? cnic;
+        private string? emailAddress;
+        private string? phoneNumber;
+        private string? loginPassword;
+        private string? firstName;
+        private string? lastName;
+        private string? secondaryContactNumber;
+        private string? userProfilePictureURL;
         private short accounttypeid;
         #endregion
 

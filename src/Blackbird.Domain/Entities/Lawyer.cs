@@ -3,12 +3,12 @@
     public class Lawyer : User    
     {
         #region private declarations
-        private short practicingSince;//
-        private string? tagLine;//
+        private short practicingSince;
+        private string? tagLine;
        
-        private string? postalAddress;//
-        private string? state;//
-        private string? city;//
+        private string? postalAddress;
+        private string? state;
+        private string? city;
         #endregion
 
         
